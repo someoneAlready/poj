@@ -21,3 +21,7 @@ POJ 2299 Ultra-QuickSort
 POJ 3349 Snowflake Snow Snowflakes
 求n个雪花中是否有同构的雪花。
 Hash 先对雪花的各个方位枚举，求出字典序最小的状态，然后对该状态进行hash。
+
+POJ 3274 Gold Balanced Lineup
+给定 n<=100000 个 k<=30 bit位数，求最长的连续的一段，是该段每一bit的频数相等。
+Hash 令s[i][j]为1..i序列第 j bit位的和，如果第a到b段每一bit的频数都相等，则s[b][k]-s[a][k]=C，对于任意k，C为常数。gao(s[i])为,对于所有k，s[i][k]-=min(s[i][k])，对于相等的gao(s[a]),gao(s[b])，那么一定存在常数C=min(s[a])-min(s[b])，为任意一bit，s[a]与s[b]的差距。
