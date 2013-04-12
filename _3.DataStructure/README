@@ -19,6 +19,8 @@ POJ 2750 Potted Flower
 线段树+最大子段和 利用线段树求1..n序列的最大子段和Max，和最小子段和Min，答案就是max(Max, Sum-Min)，如果Max==Sum，那么答案就是Sum-Min。
 
 POJ 2482 Stars in Your Window
+给定最多10000个星星的坐标和亮度，和一个长宽为W*H的矩形，求能套住星星的亮度之和最大。
+线段树+扫描线 将星星按照x坐标排序，每次插入一个新元素，就将与之长度大于w的星星删除。
 
 POJ 2352 Stars
 
