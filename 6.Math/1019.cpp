@@ -44,51 +44,49 @@ ll solve(){
 		a1+=d;
 		ll delta=a1*n+n*(n-1)*d/2;
 		if (tot+delta>=m){
-            m-=tot;
-            ll x=1, y=n;
-			
-            while (x!=y){
-                ll z=mid(x,y), si=a1*z+z*(z-1)*d/2;
-                if (si>=m) y=z;
-                else x=z+1;
-            }
-            ll si=a1*(x-1)+(x-1)*(x-2)*d/2;
-            m-=si;
-            
-            tot=0, n=9, a1=1;
-            repf(i, 1, 10){
-                delta=i*n;
-                if (tot+delta>=m){
-                    m-=tot;
-                    x=a1+(m-1)/i, y=m%i;
-                    if (y==0) y=i;
-            //        cout<<x<<' '<<y<<endl;
-                    vi v;
-                    while (x) v.pb(x%10), x/=10;
-                    
-                    return v[i-y];
-                }
-                tot+=delta;
-                n*=10, a1*=10;
-            }
-            
+			m-=tot;
+			ll x=1, y=n;
+
+			while (x!=y){
+				ll z=mid(x,y), si=a1*z+z*(z-1)*d/2;
+				if (si>=m) y=z;
+				else x=z+1;
+			}
+			ll si=a1*(x-1)+(x-1)*(x-2)*d/2;
+			m-=si;
+
+			tot=0, n=9, a1=1;
+			repf(i, 1, 10){
+				delta=i*n;
+				if (tot+delta>=m){
+					m-=tot;
+					x=a1+(m-1)/i, y=m%i;
+					if (y==0) y=i;
+					vi v;
+					while (x) v.pb(x%10), x/=10;
+
+					return v[i-y];
+				}
+				tot+=delta;
+				n*=10, a1*=10;
+			}
+
 
 		}
 		tot+=delta;
 		a1+=(n-1)*d;
 		n*=10;       
 	}
-		
+
 }
 
 int main(){
-    int tests;
-    scanf("%d", &tests);
-    while (tests--){
-        scanf("%d", &m);
-        cout<<solve()<<endl;
-            
-    }
-    return 0;
-}
+	int tests;
+	scanf("%d", &tests);
+	while (tests--){
+		scanf("%d", &m);
+		cout<<solve()<<endl;
 
+	}
+	return 0;
+}
