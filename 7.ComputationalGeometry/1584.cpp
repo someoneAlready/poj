@@ -23,7 +23,7 @@ template <class T> void _checkmax(T &t, T x){if (t == -1 || x > t) t = x;}
 template <class T> void _checkmin(T &t, T x){if (t == -1 || x < t) t = x;}
 #define INF (INT_MAX/10)
 #define SQR(x) ((x)*(x))
-#define eps 1e-8
+#define eps 1e-10
 #define rep(i, n) for (int i=0; i<(n); ++i)
 #define repf(i, a, b) for (int i=(a); i<=(b); ++i)
 #define repd(i, a, b) for (int i=(a); i>=(b); --i)
@@ -35,21 +35,18 @@ template <class T> void _checkmin(T &t, T x){if (t == -1 || x < t) t = x;}
 #define all(a) a.begin(), a.end()
 #define mid(x, y) ((x+y)/2)
 #define vp vector<P>
-
 int sgn(double d){ return d<-eps?-1:d>eps; }
-
 struct C{
     double x, y, r;
     void input(){ scanf("%lf%lf%lf", &r, &x, &y); }
 };
-
 struct P{
     double x, y;
     P(){}
     P(double x, double y):x(x),y(y){}
     P operator -(const P &p){return P(x-p.x, y-p.y); }
     double operator *(const P &p){return x*p.y-y*p.x; }
-    double operator ^(const P &p){return x*p.x-y*p.y; }
+    double operator ^(const P &p){return x*p.x+y*p.y; }
     bool operator ==(const P &p){return x==p.x && y==p.y; }
     double len(){return sqrt(x*x+y*y); }
     void input(){ scanf("%lf%lf", &x, &y); }
@@ -66,15 +63,33 @@ double dis(P a, P b, P p){
     else return fabs((p-a)*(a-b))/(a-b).len();
 }
 
+bool isPointInPolygon(P p, vp &a){
+    int w=0;
+    rep(i, n){
+        int k=sgn((a[i+1]-a[i])*(p-a[i]));
+        int d1=sgn(a[i].y-p.y);
+        int d2=sgn(a[i+1].y-p.y);
+        if (k>0 && d1<=0 && d2>0) w++;
+        if (k<0 && d2<=0 && d1>0) w--;
+    }
+    if (w!=0) return 1;
+    return 0;
+}
+
 void solve(){
     a.pb(a[0]);
     vi b;
-    repf(i, 2, n){
-        b.pb( sgn( (a[i]-a[i-2])*(a[i-1]-a[i-2]) ));
-        if (i>2 && b[i-2]*b[i-3]<0){
+    repf(i, 2, n+3){
+        int k=sgn( (a[i%n]-a[(i-2)%n])*(a[(i-1)%n]-a[(i-2)%n]) );
+        if (k!=0) b.pb(k);
+        if (sz(b)>1 && b[sz(b)-1]*b[sz(b)-2]<0){
             puts("HOLE IS ILL-FORMED");
             return;
         }
+    }
+    
+    if (!isPointInPolygon(P(c.x, c.y), a)){ 
+        puts("PEG WILL NOT FIT"); return;
     }
     rep(i, n){
         if (sgn(dis(a[i], a[i+1], P(c.x, c.y))-c.r)<0){
@@ -96,4 +111,3 @@ int main(){
     }
     return 0;
 }
-
