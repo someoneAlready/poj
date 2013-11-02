@@ -44,15 +44,16 @@ POJ 3422 Kaka's Matrix Travels
 
 
 POJ 3070 Fibonacci
-
+给定n(n<=10^9)，求斐波纳契的第n项对10000取余。
+矩阵乘法+快速幂
 
 POJ 3301 Texas Trip
 
-
 POJ 3318 Matrix Multiplication
-
+给定3个n*n(n<=500)的矩阵A、B、C，判断A*B是否等于C。
 
 POJ 2454 Jersey Politics
+给定3*K（K<=60）个城市，每个城市的居民有1000人，分为A、B两派。现在要把这个3K个城市划分为3个大小都为K个城市的区，求是否能划分使A派在两个区以上有绝对优势。
 
 
 POJ 1870 Bee Breeding
@@ -62,6 +63,8 @@ POJ 3296 Rinse
 
 
 POJ 3286 How many 0's
+给定m,n（0<=m<=n<=2^32-1），求从m到n，这些数字中一共包含多少个0。
+数位DP 
 
 
 POJ 1095 Trees Made to Order
