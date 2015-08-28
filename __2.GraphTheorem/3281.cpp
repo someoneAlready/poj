@@ -1,5 +1,3 @@
-#ifndef _HEAD_H_
-#define _HEAD_H_
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -21,8 +19,6 @@
 #define SQR(x) ((x)*(x))
 
 using namespace std;
-
-#endif
 
 #include <vector>
 #include <queue>
